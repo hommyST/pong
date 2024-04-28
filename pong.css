@@ -1,0 +1,6 @@
+#field {
+  width: 100%;
+  height: 500px;
+  background-color: hsla(199, 100%, 76%, 0.275);
+  box-shadow: inset 0 0 10px hsla(199, 100%, 10%, 0.7);
+}
