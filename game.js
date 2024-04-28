@@ -1,3 +1,4 @@
+import Ball from './js/Ball.js'
 import Gamepad from './js/Gamepad.js'
 import Paddle from './js/Paddle.js'
 // import Vector from './js/Vector.js'
@@ -13,6 +14,7 @@ field.height = HEIGHT
 
 let lPaddle = new Paddle(field, 10, 10, 10, 50)
 let rPaddle = new Paddle(field, WIDTH - 20, 10, 10, 50)
+let ball = new Ball(field, WIDTH / 2, HEIGHT / 2, 12)
 
 const controls = {
   lpaddle: {up: 0, down: 0},
@@ -26,6 +28,7 @@ function draw() {
 
   handleControl()
 
+  ball.show()
   lPaddle.show()
   rPaddle.show()
 
