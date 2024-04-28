@@ -165,6 +165,10 @@ export default class Vector {
     return (a * (180 / Math.PI))
   }
 
+  static toRadian(a) {
+    return (a * (Math.PI / 180))
+  }
+
   static random2D() {
     return this.fromAngle(Math.random() * (Math.PI * 2))
   }

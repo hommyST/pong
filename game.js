@@ -12,8 +12,8 @@ const HEIGHT = field.getBoundingClientRect().height
 field.width = WIDTH
 field.height = HEIGHT
 
-let lPaddle = new Paddle(field, 10, 10, 10, 50)
-let rPaddle = new Paddle(field, WIDTH - 20, 10, 10, 50)
+let lPaddle = new Paddle(field, 10, HEIGHT / 2 - 25, 10, 50)
+let rPaddle = new Paddle(field, WIDTH - 20, HEIGHT / 2 - 25, 10, 50)
 let ball = new Ball(field, WIDTH / 2, HEIGHT / 2, 12)
 
 const controls = {
@@ -28,9 +28,16 @@ function draw() {
 
   handleControl()
 
+  ball.update()
   ball.show()
   lPaddle.show()
   rPaddle.show()
+
+  if (rPaddle.isHit(ball) || lPaddle.isHit(ball)) {
+    console.log('HIT');
+    ball.reverseX()
+    ball.reverseY()
+  }
 
   requestAnimationFrame(draw)
 }
@@ -38,18 +45,18 @@ function draw() {
 function handleControl() {
   let factor = 10
   if (controls.lpaddle.up) {
-    if (lPaddle.paddle.y <= 10) lPaddle.paddle.y = 10
+    if (lPaddle.paddle.y <= 0) lPaddle.paddle.y = 0
     else lPaddle.paddle.y -= controls.lpaddle.up * factor
   } else if (controls.lpaddle.down) {
-    if (lPaddle.paddle.y >= HEIGHT - lPaddle.h - 10) lPaddle.paddle.y = HEIGHT - lPaddle.h - 10
+    if (lPaddle.paddle.y >= HEIGHT - lPaddle.h) lPaddle.paddle.y = HEIGHT - lPaddle.h
     else lPaddle.paddle.y += controls.lpaddle.down * factor
   }
 
   if (controls.rpaddle.up) {
-    if (rPaddle.paddle.y <= 10) rPaddle.paddle.y = 10
+    if (rPaddle.paddle.y <= 0) rPaddle.paddle.y = 0
     else rPaddle.paddle.y -= controls.rpaddle.up * factor
   } else if (controls.rpaddle.down) {
-    if (rPaddle.paddle.y >= HEIGHT - rPaddle.h - 10) rPaddle.paddle.y = HEIGHT - rPaddle.h - 10
+    if (rPaddle.paddle.y >= HEIGHT - rPaddle.h) rPaddle.paddle.y = HEIGHT - rPaddle.h
     else rPaddle.paddle.y += controls.rpaddle.down * factor
   }
 }

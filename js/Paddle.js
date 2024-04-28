@@ -15,4 +15,17 @@ export default class Paddle {
     ctx.rect(this.paddle.x, this.paddle.y, this.w, this.h)
     ctx.fill()
   }
+
+  isHit(ball) {
+    let x = this.paddle.x
+    let y = this.paddle.y
+    let bx = ball.ball.x
+    let by = ball.ball.y
+
+    if (bx >= x && by >= y && bx <= x + this.w && by <= y + this.h) {
+      return true
+    }
+
+    return false
+  }
 }
