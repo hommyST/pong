@@ -25,6 +25,15 @@ draw()
 
 function draw() {
   ctx.clearRect(0, 0, WIDTH, HEIGHT)
+  
+  renderScore()
+  ctx.strokeStyle = '#fafafa1f'
+  ctx.beginPath()
+  ctx.moveTo(WIDTH / 2, 0)
+  ctx.lineTo(WIDTH / 2, HEIGHT)
+  ctx.stroke()
+
+  ctx.fillStyle = '#000'
 
   handleControl()
 
@@ -39,7 +48,26 @@ function draw() {
     ball.reverseY()
   }
 
+  let score = ball.out()
+  if (score) {
+    ball.reset()
+    if (score === 'r') rPaddle.addScore()
+    else if (score === 'l') {
+      lPaddle.addScore()
+      ball.reverseX()
+    }
+  }
+
+
   requestAnimationFrame(draw)
+}
+
+function renderScore() {
+  ctx.textAlign = 'center'
+  ctx.font = '2rem sans-serif'
+  ctx.fillStyle = '#fafafa'
+  ctx.fillText(lPaddle.score, WIDTH / 2 - 50, 50)
+  ctx.fillText(rPaddle.score, WIDTH / 2 + 50, 50)
 }
 
 function handleControl() {

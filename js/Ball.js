@@ -8,10 +8,16 @@ export default class Ball {
     this.r = r
     
     this.speed = 5
-    let startAngle = random(Math.PI / 4 * -1, Math.PI / 4)
 
     this.vel = Vector.random2D()
     this.vel.setMag(this.speed)
+
+    this.reset()
+  }
+
+  reset() {
+    this.ball.set(this.canv.width / 2, this.canv.height / 2)
+    let startAngle = random(Math.PI / 4 * -1, Math.PI / 4)
     this.vel.setHeading(startAngle)
   }
 
@@ -27,6 +33,12 @@ export default class Ball {
   update() {
     this.ball.add(this.vel)
     this.flipVertical()
+  }
+
+  out() {
+    if (this.ball.x < -(this.r * 2)) return 'r'
+    else if  (this.ball.x > this.canv.width + this.r * 2) return 'l'
+    return false
   }
 
   flipVertical() {

@@ -6,6 +6,15 @@ export default class Paddle {
     this.paddle = new Vector(x, y)
     this.w = w
     this.h = h
+    this._score = 0
+  }
+
+  get score() {
+    return this._score
+  }
+
+  addScore() {
+    this._score++
   }
 
   show() {
