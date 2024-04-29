@@ -1,0 +1,44 @@
+.control-panel {
+  --bg-color: #263238;
+  
+  position: fixed;
+  top: 0;
+  left: -200px;
+  width: 200px;
+  height: 100dvh;
+  height: 100vh;
+  transition: left 200ms;
+
+  background-color: var(--bg-color);
+  * {
+    color: #eceff1;
+  }
+
+  &.open {
+    left: 0;
+  }
+}
+
+.control-panel .open-close {
+  --width: 40px;
+  position: absolute;
+  top: 10px;
+  right: calc(var(--width) * -1);
+  background: var(--bg-color);
+  border: none;
+  width: var(--width);
+  height: 40px;
+  border-radius: 0 5px 5px 0;
+  text-align: center;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+
+  img {
+    transition: rotate 200ms;
+  }
+
+  &:hover img{
+    rotate: 0.5turn;
+  }
+}

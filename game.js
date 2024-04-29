@@ -22,6 +22,7 @@ const controls = {
 }
 init()
 draw()
+domControls()
 
 function draw() {
   ctx.clearRect(0, 0, WIDTH, HEIGHT)
@@ -124,5 +125,25 @@ function init() {
         else if (ev.value < -0.2) controls.rpaddle.up = Math.abs(ev.value)
       }
     })
+  })
+}
+
+
+function domControls() {
+  const cp = document.querySelector('.control-panel')
+  const cpCloseBtn = document.querySelector('.control-panel .open-close')
+
+  const lpaddle_size = document.querySelector('#lpaddle_size')
+  const rpaddle_size = document.querySelector('#rpaddle_size')
+
+  cpCloseBtn.addEventListener('click', () => {
+    cp.classList.toggle('open')
+  })
+
+  lpaddle_size.addEventListener('input', ev => {
+    lPaddle.h = Number(ev.target.value)
+  })
+  rpaddle_size.addEventListener('input', ev => {
+    rPaddle.h = Number(ev.target.value)
   })
 }

@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="pong.css">
+  <link rel="stylesheet" href="control.css">
   <script type="module" src="game.js" defer></script>
 </head>
 <body>
@@ -16,5 +17,15 @@
 
     <canvas id="field" height="500"></canvas>
   </main>
+
+  <div class="control-panel">
+    <button class="open-close"><img src="./gear.svg" alt="gear" width="20" height="20"></button>
+
+    <label>Left Paddle size</label>
+    <input type="range" id="lpaddle_size" min="30" max="300" value="50">
+
+    <label>Right Paddle size</label>
+    <input type="range" id="rpaddle_size" min="30" max="300" value="50">
+  </div>
 </body>
 </html>
