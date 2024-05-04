@@ -26,7 +26,7 @@ export default class Ball {
 
     ctx.fillStyle = 'black'
     ctx.beginPath();
-    ctx.arc(this.ball.x, this.ball.y, this.r, 0, 2 * Math.PI);
+    ctx.arc(this.ball.x, this.ball.y, this.r * 2, 0, 2 * Math.PI);
     ctx.fill();
   }
 
@@ -36,8 +36,9 @@ export default class Ball {
   }
 
   out() {
-    if (this.ball.x < -(this.r * 2)) return 'r'
-    else if  (this.ball.x > this.canv.width + this.r * 2) return 'l'
+    let offset = this.r * 15
+    if (this.ball.x + offset < 0) return 'r'
+    else if  (this.ball.x - offset > this.canv.width) return 'l'
     return false
   }
 

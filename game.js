@@ -12,9 +12,9 @@ const HEIGHT = field.getBoundingClientRect().height
 field.width = WIDTH
 field.height = HEIGHT
 
-let lPaddle = new Paddle(field, 10, HEIGHT / 2 - 25, 10, 50)
-let rPaddle = new Paddle(field, WIDTH - 20, HEIGHT / 2 - 25, 10, 50)
-let ball = new Ball(field, WIDTH / 2, HEIGHT / 2, 12)
+let lPaddle = new Paddle(field, 10, HEIGHT / 2 - 25, 10, 70)
+let rPaddle = new Paddle(field, WIDTH - 20, HEIGHT / 2 - 25, 10, 70)
+let ball = new Ball(field, WIDTH / 2, HEIGHT / 2, 6)
 
 const controls = {
   lpaddle: {up: 0, down: 0},
@@ -44,7 +44,6 @@ function draw() {
   rPaddle.show()
 
   if (rPaddle.isHit(ball) || lPaddle.isHit(ball)) {
-    console.log('HIT');
     ball.reverseX()
     ball.reverseY()
   }
@@ -110,19 +109,21 @@ function init() {
 
     gp.on('axischanged', (ev) => {
       // console.log('axischanged', ev);
+      let dz = 0.3
+      
       if (ev.index === 1) {
-        if (ev.value >= -0.2 && ev.value <= 0.2) {
+        if (ev.value >= -dz && ev.value <= dz) {
           controls.lpaddle.down = 0
           controls.lpaddle.up = 0
-        } else if (ev.value > 0.2) controls.lpaddle.down = Math.abs(ev.value)
-        else if (ev.value < -0.2) controls.lpaddle.up = Math.abs(ev.value)
+        } else if (ev.value > dz) controls.lpaddle.down = Math.abs(ev.value)
+        else if (ev.value < -dz) controls.lpaddle.up = Math.abs(ev.value)
         
       } else if (ev.index === 3) {
-        if (ev.value >= -0.2 && ev.value <= 0.2) {
+        if (ev.value >= -dz && ev.value <= dz) {
           controls.rpaddle.down = 0
           controls.rpaddle.up = 0
-        } else if (ev.value > 0.2) controls.rpaddle.down = Math.abs(ev.value)
-        else if (ev.value < -0.2) controls.rpaddle.up = Math.abs(ev.value)
+        } else if (ev.value > dz) controls.rpaddle.down = Math.abs(ev.value)
+        else if (ev.value < -dz) controls.rpaddle.up = Math.abs(ev.value)
       }
     })
   })

@@ -30,6 +30,10 @@ export default class Paddle {
     let y = this.paddle.y
     let bx = ball.ball.x
     let by = ball.ball.y
+    let br = ball.r
+
+    if (x < this.canv.width / 2) bx -= br // if left paddle
+    else bx += br // if right paddle
 
     if (bx >= x && by >= y && bx <= x + this.w && by <= y + this.h) {
       return true
